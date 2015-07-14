@@ -28,7 +28,7 @@ var funcArr = [
         }
     ]
 
-    , run = stack.create(funcArr);
+    , run = bernstein.create(funcArr);
 
 run({num: 10}).then(function (finalData) {
     console.log(finalData); 
