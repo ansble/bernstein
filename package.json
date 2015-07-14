@@ -2,7 +2,7 @@
   "name": "bernstein",
   "version": "1.0.0",
   "description": "execute an arbitrary number of arbitrary functions in sequence over the same data in javascript",
-  "main": "index.js",
+  "main": "dist/bernstein.cjs.js",
   "scripts": {
     "test": "gulp test",
     "build": "gulp build"
@@ -31,6 +31,7 @@
     "browserify": "^9.0.8",
     "chai": "^3.0.0",
     "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
     "gulp-filter": "^2.0.2",
     "gulp-jshint": "^1.9.4",
     "gulp-mocha": "^2.1.1",

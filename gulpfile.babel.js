@@ -4,6 +4,7 @@ import mocha from 'gulp-mocha';
 import sourceMaps from 'gulp-sourcemaps';
 import gutil from 'gulp-util';
 import babelify from 'babelify';
+import babel from 'gulp-babel';
 import browserify from 'browserify';
 import source from 'vinyl-source-stream';
 import streamify from 'gulp-streamify';
@@ -34,6 +35,11 @@ gulp.task('build', () => {
         .pipe(gulp.dest('../'))
         .pipe(streamify(uglify()))
         .pipe(rename('bernstein.min.js'))
+        .pipe(gulp.dest('./dist'));
+
+    gulp.src('./index.js')
+        .pipe(babel())
+        .pipe(rename('bernstein.cjs.js'))
         .pipe(gulp.dest('./dist'));
 
     return gulp.src('./index.js')
