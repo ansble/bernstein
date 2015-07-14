@@ -52,4 +52,15 @@ describe('Stack tests', () => {
             done();
         });
     });
+
+    it('should pass through if no functions', (done) => {
+        let funcArr
+
+            , run = stack.create(funcArr);
+
+        run({num: 1}).then(function (data){
+            assert.isTrue(data.num === 1);
+            done();
+        });
+    });
 });
