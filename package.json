@@ -1,0 +1,49 @@
+{
+  "name": "bernstein",
+  "version": "1.0.0",
+  "description": "execute an arbitrary number of arbitrary functions in sequence over the same data in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test",
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/designfrontier/bernstein.git"
+  },
+  "keywords": [
+    "functions",
+    "js",
+    "node",
+    "browser",
+    "middleware"
+  ],
+  "author": "Daniel Sellers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/designfrontier/bernstein/issues"
+  },
+  "homepage": "https://github.com/designfrontier/bernstein",
+  "devDependencies": {
+    "babel": "^5.6.14",
+    "babelify": "^6.0.2",
+    "browser-sync": "^2.4.0",
+    "browserify": "^9.0.8",
+    "chai": "^3.0.0",
+    "gulp": "^3.9.0",
+    "gulp-filter": "^2.0.2",
+    "gulp-jshint": "^1.9.4",
+    "gulp-mocha": "^2.1.1",
+    "gulp-plumber": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.4",
+    "jshint-stylish": "^1.0.1",
+    "mocha": "^2.2.5",
+    "phantomjs": "^1.9.17",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

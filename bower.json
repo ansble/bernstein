@@ -1,0 +1,21 @@
+{
+  "name": "bernstein",
+  "version": "1.0.0",
+  "homepage": "https://github.com/designfrontier/bernstein",
+  "authors": [
+    "Daniel Sellers <daniel@designfrontier.net>"
+  ],
+  "main": "dist/index.js",
+  "moduleType": [
+    "es6",
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
