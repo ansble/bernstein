@@ -1,6 +1,6 @@
 {
   "name": "bernstein",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "execute an arbitrary number of arbitrary functions in sequence over the same data in javascript",
   "main": "dist/bernstein.cjs.js",
   "scripts": {
