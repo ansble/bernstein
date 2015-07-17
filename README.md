@@ -7,6 +7,8 @@ bernstein let's you execute an array of functions (synchonrous and async) over a
 ##Use
 Check out the tests for detailed use...
 
+To install you can use: `bower install bernstein --save` or for server side use: `npm install bernstein --save`
+
 To create an execution stack you pass `bernstein.create` an array of functions. It then returns a function that can pass data to for execution. The returned function returns a promise that allows you to collect the finished data when all functions have been executed.
 
 For example:
