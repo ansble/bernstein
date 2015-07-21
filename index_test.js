@@ -31,16 +31,20 @@ describe('Stack tests', () => {
 
     it('should execute each of an array of functions in order', (done) => {
         let funcArr = [(data, original, next)=>{
+                assert.isTrue(data.num === 0);
                 data.num ++;
+                assert.isTrue(data.num === 2);
                 next(data);
             }
             , (data, original, next) => {
                 data.num ++;
+                assert.isTrue(data.num === 3);
                 next(data);
             }
             , (data, original) => {
                 return new Promise(function (res, rej){
                     data.num ++;
+                    assert.isTrue(data.num === 4);
                     res(data);
                 });
             }]
@@ -49,6 +53,8 @@ describe('Stack tests', () => {
 
         run({num: 1}).then(function (data){
             assert.isTrue(data.num === 4);
+            done();
+        }).catch(function (err){
             done();
         });
     });
