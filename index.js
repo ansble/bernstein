@@ -3,6 +3,6 @@ export default function create(fns) {
                     //daisy chain the functions on the Promise with `then`s
     return (data) => fns.reduce(
         (prev, curr) => prev.then(
-            (dataIn) => Promise.resolve(curr.apply(null, [dataIn, resolve]))
+            (dataIn) => new Promise((resolve, reject) => resolve(curr(dataIn, resolve)))
         ), Promise.resolve(data));
 }

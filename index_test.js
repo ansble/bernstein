@@ -30,20 +30,20 @@ describe('Stack tests', () => {
 
     it('should execute each of an array of functions in order', (done) => {
         let funcArr = [(data, next)=>{
-                assert.isTrue(data.num === 0);
+                assert.strictEqual(data.num, 1);
                 data.num ++;
-                assert.isTrue(data.num === 2);
+                assert.strictEqual(data.num, 2);
                 next(data);
             }
             , (data, next) => {
                 data.num = data.num * 3;
-                assert.isTrue(data.num === 6);
+                assert.strictEqual(data.num, 6);
                 next(data);
             }
-            , (data) => {
+            , (data, next) => {
                 return new Promise(function (res, rej){
                     data.num = data.num / 2;
-                    assert.isTrue(data.num === 3);
+                    assert.strictEqual(data.num, 3);
                     res(data);
                 });
             }]
@@ -51,16 +51,16 @@ describe('Stack tests', () => {
             , run = create(funcArr);
 
         run({num: 1}).then(function (data){
-            assert.isTrue(data.num === 3);
+            assert.strictEqual(data.num, 3);
             done();
         }).catch(function (err){
+            assert.isUndefined(err);
             done();
         });
     });
 
     it('should pass through if no functions', (done) => {
         let funcArr
-
             , run = create(funcArr);
 
         run({num: 1}).then(function (data){
