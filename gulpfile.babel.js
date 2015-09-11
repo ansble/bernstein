@@ -1,4 +1,3 @@
-import babelRegister from 'babel/register';
 import gulp from 'gulp';
 import mocha from 'gulp-mocha';
 import sourceMaps from 'gulp-sourcemaps';

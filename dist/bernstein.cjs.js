@@ -3,19 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var create = function create(functions) {
-    functions = Array.isArray(functions) ? functions : [];
-    return function (data) {
-        return functions.reduce(function (prev, curr) {
-            return prev.then(function (request) {
-                return new Promise(function (resolve, reject) {
-                    resolve(curr.apply(null, [request, data, resolve]));
-                });
-            });
-            //immediate promise to start the stack off right
-        }, Promise.resolve(JSON.parse(JSON.stringify(data))));
-    };
-};
+exports["default"] = create;
 
-exports["default"] = { create: create };
+function create(fns) {
+    fns = Array.isArray(fns) ? fns : [];
+    //daisy chain the functions on the Promise with `then`s
+    return function (data) {
+        return fns.reduce(function (prev, curr) {
+            return prev.then(function (dataIn) {
+                return Promise.resolve(curr.apply(null, [dataIn, resolve]));
+            });
+        }, Promise.resolve(data));
+    };
+}
+
 module.exports = exports["default"];

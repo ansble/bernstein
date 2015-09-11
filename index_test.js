@@ -1,58 +1,57 @@
 import chai from 'chai';
-import * as stack from './index';
+import create from './index';
 
 let assert = chai.assert;
 
 describe('Stack tests', () => {
 
-    it('should be properly defined as an object', () => {
-        assert.isObject(stack);
-        assert.isFunction(stack.create);
+    it('should be properly defined as a function', () => {
+        assert.isFunction(create);
     });
 
-    it('shoult return a function when create is called', () => {
-        let funcArr = [(data, original, next)=>{
-                data.num ++;
+    it('should return a function when create is called', () => {
+        let funcArr = [(data, next)=>{
+                data.num++;
                 next(data);
             }
-            , (data, original, next) => {
-                data.num ++;
+            , (data, next) => {
+                data.num++;
                 next(data);
             }
-            , (data, original) => {
+            , (data) => {
                 return new Promise(function (res, rej){
-                    data.num ++;
+                    data.num++;
                     res(data);
                 });
             }];
 
-        assert.isFunction(stack.create(funcArr));
+        assert.isFunction(create(funcArr));
     });
 
     it('should execute each of an array of functions in order', (done) => {
-        let funcArr = [(data, original, next)=>{
+        let funcArr = [(data, next)=>{
                 assert.isTrue(data.num === 0);
                 data.num ++;
                 assert.isTrue(data.num === 2);
                 next(data);
             }
-            , (data, original, next) => {
-                data.num ++;
-                assert.isTrue(data.num === 3);
+            , (data, next) => {
+                data.num = data.num * 3;
+                assert.isTrue(data.num === 6);
                 next(data);
             }
-            , (data, original) => {
+            , (data) => {
                 return new Promise(function (res, rej){
-                    data.num ++;
-                    assert.isTrue(data.num === 4);
+                    data.num = data.num / 2;
+                    assert.isTrue(data.num === 3);
                     res(data);
                 });
             }]
 
-            , run = stack.create(funcArr);
+            , run = create(funcArr);
 
         run({num: 1}).then(function (data){
-            assert.isTrue(data.num === 4);
+            assert.isTrue(data.num === 3);
             done();
         }).catch(function (err){
             done();
@@ -62,7 +61,7 @@ describe('Stack tests', () => {
     it('should pass through if no functions', (done) => {
         let funcArr
 
-            , run = stack.create(funcArr);
+            , run = create(funcArr);
 
         run({num: 1}).then(function (data){
             assert.isTrue(data.num === 1);
