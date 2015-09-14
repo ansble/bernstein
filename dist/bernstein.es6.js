@@ -1,15 +1,8 @@
-let create = (functions) => {
-        functions = Array.isArray(functions) ? functions : [];
-        return (data) => {
-            return functions.reduce((prev, curr) => {
-                return prev.then((request) => {
-                    return new Promise((resolve, reject) => {
-                        resolve(curr.apply(null, [request, data, resolve]));
-                    });
-                });
-            //immediate promise to start the stack off right
-            }, Promise.resolve(JSON.parse(JSON.stringify(data))));
-        };
-    };
-
-export default {create};
+export default function create(fns) {
+    fns = Array.isArray(fns) ? fns : [];
+                    //daisy chain the functions on the Promise with `then`s
+    return (data) => fns.reduce(
+        (prev, curr) => prev.then(
+            (dataIn) => Promise.resolve(curr.apply(null, [dataIn, resolve]))
+        ), Promise.resolve(data));
+}
