@@ -11,7 +11,9 @@ function create(fns) {
     return function (data) {
         return fns.reduce(function (prev, curr) {
             return prev.then(function (dataIn) {
-                return Promise.resolve(curr.apply(null, [dataIn, resolve]));
+                return new Promise(function (resolve, reject) {
+                    return resolve(curr(dataIn, resolve));
+                });
             });
         }, Promise.resolve(data));
     };

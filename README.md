@@ -14,15 +14,15 @@ To create an execution stack you pass `bernstein.create` an array of functions. 
 For example:
 ```
 var funcArr = [
-        function (data, original, next) {
+        function (data, next) {
             data.num ++;
             next(data);
         }
-        , function (data, original, next) {
+        , function (data, next) {
             data.num ++;
             next(data);
         }
-        , function (data, original) {
+        , function (data) {
             return new Promise(function (res, rej){
                 data.num ++;
                 res(data);
@@ -40,5 +40,4 @@ run({num: 10}).then(function (finalData) {
 
 The functions in the array recieve three possible parameters:
 - `data` the data of returned by the previous function
-- `original` the original data set untouched by any other functions
 - `next` a function that moves the stack on to the next function. Pass next the data you want to pass on. Alternately your function can return a promise and the data that the promise resolves with will be passed onto the next function in the stack. This allows for async operations (file reads, network requests, etc.) to easily be included as part of the execution stack.
