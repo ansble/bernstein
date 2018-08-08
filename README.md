@@ -1,4 +1,6 @@
 # bernstein
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/ansble/bernstein.svg)](https://greenkeeper.io/)
 execute an arbitrary number of arbitrary functions in sequence over the same data in javascript
 
 ## Wat?!
